@@ -364,3 +364,6 @@ FodyWeavers.xsd
 
 # Ignore QHULL
 QHull_org/
+
+# Ignore cppipm main folder
+cppipm-master/
