@@ -1,0 +1,1 @@
+For N = 1 it took 4.654 seconds
