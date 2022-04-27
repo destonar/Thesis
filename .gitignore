@@ -367,3 +367,7 @@ QHull_org/
 
 # Ignore cppipm main folder
 cppipm-master/
+
+#ignore output files
+output.txt
+debug_output.txt
