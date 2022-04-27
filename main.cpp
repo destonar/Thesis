@@ -18,6 +18,9 @@
 // EIGEN
 #include <Eigen/Dense>
 
+#include "CallOnMax.h"
+#include "CallOnMin.h"
+
 // NAMESPACE
 using namespace Eigen;
 using namespace std;
@@ -32,9 +35,10 @@ typedef pair<Array<double, Dynamic, 1>*, ArrayXNi*> ValueFunc;
 int main()
 {
 	// INPUTS
-	Array<double, GLOBAL_NDIM, GLOBAL_NDIM> dx;
-	Array<double, GLOBAL_NDIM, 1> delta(0.08, 0.08), center(0, 0), x0(3, 3), mu(0, 0), sigma(0.2, 0.2);
-	Matrix<double, GLOBAL_NDIM, GLOBAL_NDIM> gamma;
+	Array<double, GLOBAL_NDIM, 2> dx;
+	Array<double, GLOBAL_NDIM, 1> delta(0.08, 0.08), center(0, 0), x0(3, 3);
+	Array2d mu(0, 0), sigma(0.2, 0.2);
+	Matrix2d gamma;
 
 	ArrayXXd X_01 = RowVectorXd::LinSpaced(10, 2.7, 4.5).replicate(10, 1);
 	ArrayXXd X_02 = VectorXd::LinSpaced(10, 2.7, 4.5).replicate(1, 10);
@@ -47,16 +51,17 @@ int main()
 		
 	dx << -0.2, 0.2,
 		-0.2, 0.2;
+
 	//dx << 0.75, 1.25,
 	//	0.75, 1.25;
 
-	double strike = 3.5;
+	double strike = 1.5;
 
 	//  OBJECTS OF CLASSES
-	//ISetHandler * supp = new RectangularHandler(dx);
-	ISetHandler * supp = new EllipseHandler(mu, gamma, 0.6);
+	ISetHandler * supp = new RectangularHandler(dx);
+	//ISetHandler * supp = new EllipseHandler(mu, gamma, 0.6);
 	Grid grid(delta, center);
-	PutOnMax opt(strike);
+	IOption* opt = new CallOnMax(strike);
 	ISetHandler* constraint_set = new NonNegativeSpaceHandler;
 
 	constexpr char qh_opts = 'Qt';

@@ -11,14 +11,14 @@ using namespace std;
 
 class EllipseHandler final : public ISetHandler
 {
-	Array<double, GLOBAL_NDIM, 1> mu, EigVal;
-	Array<double, GLOBAL_NDIM, GLOBAL_NDIM> sigma, U, sigma_inv;
-	Matrix<double, GLOBAL_NDIM, GLOBAL_NDIM> L;
+	Array2d mu, EigVal;
+	Array22d sigma, U, sigma_inv;
+	Matrix2d L;
 
 
 public:
 
-	explicit EllipseHandler(const Array<double, GLOBAL_NDIM, 1>& in_mu, const Array<double, GLOBAL_NDIM, GLOBAL_NDIM>& in_sigma, double in_conf_level);
+	explicit EllipseHandler(const Array2d& in_mu, const Array22d& in_sigma, double in_conf_level);
 
 	ArrayXNi project(Grid grid) override;
 
@@ -28,4 +28,5 @@ public:
 
 };
 #endif
+
 

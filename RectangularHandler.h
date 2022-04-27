@@ -4,15 +4,16 @@
 #include "Grid.h"
 #include "ISetHandler.h"
 #include "ndim_const.h"
+#include <iostream>
 
 using namespace Eigen;
 using namespace std;
 
 class RectangularHandler final: public ISetHandler
 {
-	Array22d bounds;
+	Array<double, GLOBAL_NDIM, 2> bounds;
 public:
-	explicit RectangularHandler(const Array22d& in_bounds);
+	explicit RectangularHandler(const Array<double, GLOBAL_NDIM, 2>& in_bounds);
 
 	ArrayXNi project(Grid grid) override;
 

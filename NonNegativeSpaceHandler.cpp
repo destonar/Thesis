@@ -2,7 +2,7 @@
 
 Array<double, Dynamic, 1> NonNegativeSpaceHandler::support_function(Array<double, Dynamic, GLOBAL_NDIM> x)
 {
-	Array<double, Dynamic, 1> res(x.rows(), 1);
+	Array<double, Dynamic, 1> res = Array<double, Dynamic, 1>::Zero(x.rows(), 1);
 
 	for (int i = 0; i < x.rows(); i++)
 	{
@@ -10,7 +10,6 @@ Array<double, Dynamic, 1> NonNegativeSpaceHandler::support_function(Array<double
 		if (check.sum() > 0)
 		{
 			res(i, 0) = INFINITY;
-			break;
 		}
 	}
 

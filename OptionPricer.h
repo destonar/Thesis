@@ -2,6 +2,7 @@
 #define OPTIONPRICER_H
 // STD LIBS
 #include <iostream>
+#include <cmath>
 
 // EIGEN
 #include <Eigen/Dense>
@@ -32,7 +33,13 @@
 #include "ndim_const.h"
 
 // DEBUG OUTPUT
+#include <iostream>
 #include <fstream>
+#include <string>
+
+//OPENMP
+
+#include<omp.h>
 
 
 
@@ -49,24 +56,21 @@ class OptionPricer
 {
 	Grid grid;
 	int N;
-	PutOnMax option;
-	Array2d x0;
+	IOption* option;
+	Array<double, GLOBAL_NDIM, 1> x0;
 	ISetHandler* price_support;
-	//EllipseHandler price_support;
-	Array2i p0;
+	Array<int, GLOBAL_NDIM, 1> p0;
 	ISetHandler* constraint_set;
 	const char qh_opts;
-	ofstream fout;
-
 
 
 public:
 
-	OptionPricer(Grid in_grid, int in_N, PutOnMax in_option, Array2d in_x0, ISetHandler* in_price_support, ISetHandler* in_constraint_set, const char in_qh_opts);
+	OptionPricer(Grid in_grid, int in_N, IOption* in_option, Array<double, GLOBAL_NDIM, 1> in_x0, ISetHandler* in_price_support, ISetHandler* in_constraint_set, const char in_qh_opts);
 
 	ArrayXNi get_support_set(const ArrayXNi& curr_set, ISetHandler* increment) const;
 
-	ArrayXNi* generate_evaluation_point_lists(Array2i p_0, ISetHandler* pricer_support, int N) const;
+	ArrayXNi* generate_evaluation_point_lists(Array<int, GLOBAL_NDIM, 1> p_0, ISetHandler* pricer_support, int N) const;
 
 	VectorXd get_max_coordinates(ArrayXNd x, const ArrayXd& f, Array<double, 1, GLOBAL_NDIM> z) const;
 

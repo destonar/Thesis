@@ -125,6 +125,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)\eigen-master;$(SolutionDir)\linprog;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_WINDOWS;NOMINMAX;USE_CBC;USE_CLP;USE_BOP;USE_GLOP;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <OpenMPSupport>true</OpenMPSupport>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -143,6 +144,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)eigen-master;$(SolutionDir)linprog;$(SolutionDir)QHull_org\qhull-master\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_WINDOWS;NOMINMAX;USE_CBC;USE_CLP;USE_BOP;USE_GLOP;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpp14</LanguageStandard>
+      <OpenMPSupport>true</OpenMPSupport>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -158,6 +160,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CallOnMax.cpp" />
+    <ClCompile Include="CallOnMin.cpp" />
     <ClCompile Include="EllipseHandler.cpp" />
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="linprog\cppipm.cpp" />
@@ -172,6 +175,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CallOnMax.h" />
+    <ClInclude Include="CallOnMin.h" />
     <ClInclude Include="IOption.h" />
     <ClInclude Include="linprog\Algorithm.h" />
     <ClInclude Include="linprog\cppipm.h" />
